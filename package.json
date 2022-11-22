@@ -1,0 +1,27 @@
+{
+  "name": "team_roster_genarater",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jett65/Team_Roster_Genarater.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jett65/Team_Roster_Genarater/issues"
+  },
+  "homepage": "https://github.com/Jett65/Team_Roster_Genarater#readme",
+  "dependencies": {
+    "inquire": "^0.4.8",
+    "jest": "^29.3.1"
+  }
+}
