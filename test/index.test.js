@@ -5,11 +5,16 @@ const file = require("../index");
 describe("index", () => {
     describe("writeToFile", () => {
         it("Should write the content to a file", () => {
-
             expect(file()).toBe("File Genarated")
         });
     });
+    describe("menu", () => {
+        it("Should return the questions for the proper selection", () => {
+            expect(menu("engineer")).toBew([{}])
+        });
+    });
 });
+
 
 describe("MakeUser", () => {
     describe("Manager", () => {
