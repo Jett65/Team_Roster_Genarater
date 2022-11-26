@@ -11,7 +11,8 @@ class Employee {
 
 class Manager extends Employee {
     // Uses the Employee class and addes the managers remaning criterea
-    constructor (officeNumber) {
+    constructor (name, ID, email, officeNumber) {
+        super(name)
         this.officeNumber = officeNumber
     }
 }
@@ -19,6 +20,7 @@ class Manager extends Employee {
 class Engineer extends Employee {
     // Uses the Employee class add addes the engeener criterea
     constructor (github) {
+        super()
         this.github = github
     }
 }
@@ -26,12 +28,14 @@ class Engineer extends Employee {
 class Intern extends Employee{
     // Uses the Employee class and addes the intern criterea
     constructor (school) {
+        super()
         this.school = school
     }
 }
 
-module.exports = {
-    Employee,
+const name  = new Manager("name")
+
+module.exports = {Employee,
     Manager,
     Engineer,
     Intern

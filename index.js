@@ -1,8 +1,6 @@
 // takes the users input to genatrat a team roster.
-
-const makeUser = require("./makeUser");
 const inquirer = require("inquirer");
-
+const makeUser = require("./makeUser") 
 // inquire questions
 
 const employeeQuestions = [
@@ -29,7 +27,7 @@ const employeeQuestions = [
 const managerQuestions = [
     {
         type: "input",
-        name: "offeceNum",
+        name: "officeNum",
         message: "Enter the managers office number: "
     }
 ]
@@ -50,11 +48,11 @@ const internQuestions = [
     }
 ]
 
-const menueChoices = [
+const menuChoices = [
     {
         type: "list",
         name: "choices",
-        message: "What would you like to do next"
+        message: "What would you like to do next",
         choices: ["Add an engineer", "Add an intern", "Finish building my team"]
     }
 ]
@@ -62,22 +60,26 @@ const menueChoices = [
 function menu() {
     // displays the menu to the user
     inquirer
-        .prompt(menueChoices)    
+        .prompt(menuChoices)    
         .then((data) => {
-            
-        });
-    
+            console.log(" ")
+        });  
 }
 
 function init() {
     // displays the questions when the app is started
     inquirer
-        .prompt(employeeQuestions)
+        .prompt(employeeQuestions, managerQuestions)
         .then((data) => {
-            inquirer
-                .prompt(managerQuestions)
-                .then((data) => {
-                    menu()
-                });
+                const manager = new makeUser.Manager(data.name, data.ID, data.email, data.officeNum)
+                console.log(manager)
+
+                menu()
         });
+}
+
+init()
+
+module.exports = {
+    menu
 }

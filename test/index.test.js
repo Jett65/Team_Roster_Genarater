@@ -1,20 +1,19 @@
 // Test the index.js file
 
-const file = require("../index");
+const index = require("../index");
 
 describe("index", () => {
     describe("writeToFile", () => {
         it("Should write the content to a file", () => {
-            expect(file()).toBe("File Genarated")
+            expect(writeToFile()).toBe("File Genarated")
         });
     });
     describe("menu", () => {
         it("Should return the questions for the proper selection", () => {
-            expect(menu("engineer")).toBew([{}])
+            expect(index.menu()).toBe(2)
         });
     });
 });
-
 
 describe("MakeUser", () => {
     describe("Manager", () => {
