@@ -1,4 +1,4 @@
-// takes the users input to genatrat a team roster.
+// takes the users input to generate a team roster.
 const inquirer = require("inquirer");
 const makeUser = require("./makeUser") 
 // inquire questions
@@ -66,10 +66,16 @@ function menu() {
         });  
 }
 
+function quesConcat(secarray){
+    // Concatenates two two arrays together
+    const questions = employeeQuestions.concat(secarray)
+    return questions
+}
+
 function init() {
     // displays the questions when the app is started
     inquirer
-        .prompt(employeeQuestions, managerQuestions)
+        .prompt(quesConcat(managerQuestions))
         .then((data) => {
                 const manager = new makeUser.Manager(data.name, data.ID, data.email, data.officeNum)
                 console.log(manager)
