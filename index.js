@@ -3,6 +3,8 @@ const inquirer = require("inquirer");
 const makeUser = require("./makeUser");
 // inquire questions
 
+let data_
+
 const employeeQuestions = [
     {
         type: "input",
@@ -59,14 +61,10 @@ const menuChoices = [
 
 function menu() {
     // displays the menu to the use
-    let data
-    console.log("fires",data)
+    
     inquirer.prompt(menuChoices).then(answers => {
-       data = answers.choices
-       console.log("second",data)
+       data_ = answers.choices
     });
-    console.log(`therd ${data}`)
-    return data
 }
 
 function quesConcat(secarray) {
@@ -81,11 +79,13 @@ function init() {
         .prompt(quesConcat(managerQuestions))
         .then((data) => {
             const manObj = new makeUser.Manager(data.name,data.ID,data.email,data.officeNum);
-            menu();
+            menu();  
+            console.log(data_)   
         });
 }
 
-menu()
+init()
+
 
 module.exports = {
     menu
