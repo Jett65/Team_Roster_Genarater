@@ -61,8 +61,8 @@ function menu() {
     // displays the menu to the user
     inquirer
         .prompt(menuChoices)    
-        .then((data) => {
-            console.log(" ")
+        .then((data) => { 
+            
         });  
 }
 
@@ -89,3 +89,5 @@ init()
 module.exports = {
     menu
 }
+
+// TODO: FInd out how to use the entrey in an inquire choice
