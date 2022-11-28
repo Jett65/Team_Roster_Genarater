@@ -57,34 +57,44 @@ const menuChoices = [
     }
 ];
 
-function menu() {
-    // displays the menu to the use
-    inquirer
-        .prompt(menuChoices)
-        .then((data => {
-           console.log(data.choices);
-        }));
-}
-
 function quesConcat(secArray) {
     // Concatenates two two arrays together
     const questions = employeeQuestions.concat(secArray);
     return questions;
 }
 
+function init_test() {
+    // initializes the app 
+    const initPrompt = inquirer
+        .prompt(quesConcat(managerQuestions))
+        .then((result) => {
+            const manObj = new makeUser.Manager(result.name,result.ID,result.email,result.officeNum);
+
+        }).catch((err) => {
+            console.log("error");
+        });
+    return 1 + 1;
+}
+
+
+
 function init() {
-    // displays the questions when the app is started
+    // initializes the app 
     inquirer
         .prompt(quesConcat(managerQuestions))
         .then((data) => {
             const manObj = new makeUser.Manager(data.name,data.ID,data.email,data.officeNum);
-            console.log(menu());
+            console.log(manObj.name);
+
+        }).catch((err) => {
+            console.log("error");
         });
+
 }
 
-menu();
+console.log(init_test());
 
 module.exports = {
-    menu
+    //menu
 }
 // TODO: Figer out the stuped menu funtion
