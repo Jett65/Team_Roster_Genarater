@@ -63,7 +63,7 @@ function quesConcat(secArray) {
     return questions;
 }
 
-function init_test() {
+function init() {
     // initializes the app 
     inquirer
         .prompt(quesConcat(managerQuestions))
@@ -98,23 +98,7 @@ function init_test() {
         });
 }
 
-
-
-function init() {
-    // initializes the app 
-    inquirer
-        .prompt(quesConcat(managerQuestions))
-        .then((data) => {
-            const manObj = new makeUser.Manager(data.name,data.ID,data.email,data.officeNum);
-            console.log(manObj.name);
-
-        }).catch((err) => {
-            console.log("error");
-        });
-
-}
-
-init_test();
+init();
 
 module.exports = {
     //menu
