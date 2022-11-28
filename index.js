@@ -99,8 +99,3 @@ function init() {
 }
 
 init();
-
-module.exports = {
-    //menu
-}
-// TODO: Figer out the stuped menu funtion
