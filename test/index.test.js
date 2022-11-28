@@ -10,7 +10,7 @@ describe("index", () => {
     });
     describe("menu", () => {
         it("Should return the questions for the proper selection", () => {
-            expect(index.menu()).toBe(2)
+            expect(index.menu()).toBe("add an engineer")
         });
     });
 });
