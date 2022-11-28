@@ -19,16 +19,16 @@ class Manager extends Employee {
 
 class Engineer extends Employee {
     // Uses the Employee class add addes the engeener criterea
-    constructor(github) {
-        super();
+    constructor(name, ID, email, github) {
+        super(name,ID,email);
         this.github = github;
     }
 }
 
 class Intern extends Employee {
     // Uses the Employee class and addes the intern criterea
-    constructor(school) {
-        super();
+    constructor(name, ID, email, school) {
+        super(name, ID, email);
         this.school = school;
     }
 }

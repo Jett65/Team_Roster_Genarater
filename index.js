@@ -65,15 +65,37 @@ function quesConcat(secArray) {
 
 function init_test() {
     // initializes the app 
-    const initPrompt = inquirer
+    inquirer
         .prompt(quesConcat(managerQuestions))
         .then((result) => {
             const manObj = new makeUser.Manager(result.name,result.ID,result.email,result.officeNum);
 
+            inquirer
+                .prompt(menuChoices)
+                .then((result) => {
+
+                    if (result.choices === "Add an engineer") {
+                        inquirer
+                            .prompt(quesConcat(engineerQuestions))
+                            .then((result) => {
+                                const engObj = new makeUser.Engineer(result.name,result.ID,result.email,result.github);
+                            });
+
+                    } else if (result.choices === "Add an intern") {
+                        inquirer
+                            .prompt(quesConcat(internQuestions))
+                            .then((result) => {
+                                const intObj = new makeUser.Intern(result.name,result.ID,result.email,result.school)
+                            });
+
+                    } else {
+                        console.log("Thanks You");
+                    }
+                });
+
         }).catch((err) => {
             console.log("error");
         });
-    return 1 + 1;
 }
 
 
@@ -92,7 +114,7 @@ function init() {
 
 }
 
-console.log(init_test());
+init_test();
 
 module.exports = {
     //menu
