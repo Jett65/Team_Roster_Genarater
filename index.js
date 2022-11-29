@@ -1,9 +1,12 @@
-// takes the users input to genatrat a team roster.
-
-const makeUser = require("./makeUser");
+// takes the users input to generate a team roster.
 const inquirer = require("inquirer");
-
+const makeUser = require("./makeUser");
+const htmlGen = require("./htmlGenarater")
+const fs = require("fs")
 // inquire questions
+
+const fileName = "index.html"
+const htmlCard_lists = []
 
 const employeeQuestions = [
     {
@@ -16,7 +19,7 @@ const employeeQuestions = [
         type: "input",
         name: "ID",
         message: "Enter the employees ID: "
-    }, 
+    },
 
     {
         type: "input",
@@ -24,15 +27,15 @@ const employeeQuestions = [
         message: "Enter the employees email: "
     }
 
-]
+];
 
 const managerQuestions = [
     {
         type: "input",
-        name: "offeceNum",
+        name: "officeNum",
         message: "Enter the managers office number: "
     }
-]
+];
 
 const engineerQuestions = [
     {
@@ -40,7 +43,7 @@ const engineerQuestions = [
         name: "githubName",
         message: "Enter the engineers GitHub username: "
     }
-] 
+];
 
 const internQuestions = [
     {
@@ -48,36 +51,63 @@ const internQuestions = [
         name: "school",
         message: "Enter the interns School: "
     }
-]
+];
 
-const menueChoices = [
+const menuChoices = [
     {
         type: "list",
         name: "choices",
-        message: "What would you like to do next"
-        choices: ["Add an engineer", "Add an intern", "Finish building my team"]
+        message: "What would you like to do next",
+        choices: ["Add an engineer","Add an intern","Finish building my team"]
     }
-]
+];
 
-function menu() {
-    // displays the menu to the user
-    inquirer
-        .prompt(menueChoices)    
-        .then((data) => {
-            
-        });
-    
+function quesConcat(secArray) {
+    // Concatenates two two arrays together
+    const questions = employeeQuestions.concat(secArray);
+    return questions;
+}
+
+function writeToFile(filename, data) {
+    // writs the content to a file
+    fs.writeFile(filename, data)
+    return "File Generated"
 }
 
 function init() {
-    // displays the questions when the app is started
+    // initializes the app 
     inquirer
-        .prompt(employeeQuestions)
-        .then((data) => {
+        .prompt(quesConcat(managerQuestions))
+        .then((result) => {
+            const manObj = new makeUser.Manager(result.name,result.ID,result.email,result.officeNum);
+
             inquirer
-                .prompt(managerQuestions)
-                .then((data) => {
-                    menu()
+                .prompt(menuChoices)
+                .then((result) => {
+
+                    if (result.choices === "Add an engineer") {
+                        inquirer
+                            .prompt(quesConcat(engineerQuestions))
+                            .then((result) => {
+                                const engObj = new makeUser.Engineer(result.name,result.ID,result.email,result.github);
+
+                            });
+
+                    } else if (result.choices === "Add an intern") {
+                        inquirer
+                            .prompt(quesConcat(internQuestions))
+                            .then((result) => {
+                                const intObj = new makeUser.Intern(result.name,result.ID,result.email,result.school)
+                            });
+
+                    } else {
+                        console.log("Thanks You");
+                    }
                 });
+
+        }).catch((err) => {
+            console.log("error");
         });
 }
+
+init();
