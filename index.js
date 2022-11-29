@@ -1,12 +1,13 @@
 // takes the users input to generate a team roster.
 const inquirer = require("inquirer");
 const makeUser = require("./makeUser");
-const htmlGen = require("./htmlGenarater")
-const fs = require("fs")
+const htmlGen = require("./htmlGenarator");
+const fs = require("fs");
 // inquire questions
 
-const fileName = "index.html"
-const htmlCard_lists = []
+const fileName = "index.html";
+const htmlCard_lists = [];
+let loop = true;
 
 const employeeQuestions = [
     {
@@ -68,46 +69,60 @@ function quesConcat(secArray) {
     return questions;
 }
 
-function writeToFile(filename, data) {
+function writeToFile(filename,data) {
     // writs the content to a file
-    fs.writeFile(filename, data)
-    return "File Generated"
+    fs.writeFile(filename,data, function(err){
+        if (err) throw err
+    });
+    return "File Generated";
 }
 
 function init() {
-    // initializes the app 
+    // initializes the app
+
+    const menu = () => {
+        inquirer
+            .prompt(menuChoices)
+            .then((result) => {
+
+                if (result.choices === "Add an engineer") {
+                    inquirer
+                        .prompt(quesConcat(engineerQuestions))
+                        .then((result) => {
+                            const engObj = new makeUser.Engineer(result.name,result.ID,result.email,result.github);
+                            htmlCard_lists.push(engObj);
+                            menu()
+                        });
+
+                } else if (result.choices === "Add an intern") {
+                    inquirer
+                        .prompt(quesConcat(internQuestions))
+                        .then((result) => {
+                            const intObj = new makeUser.Intern(result.name,result.ID,result.email,result.school);
+                            htmlCard_lists.push(intObj);
+                            menu()
+                        });
+
+                } else {
+                    console.log("Thanks You");
+                    //console.log(htmlGen.genarateHtml(htmlCard_lists))
+                    console.log(htmlGen.manager(htmlCard_lists(0)))
+                }
+            });
+    };
+
     inquirer
         .prompt(quesConcat(managerQuestions))
+
         .then((result) => {
             const manObj = new makeUser.Manager(result.name,result.ID,result.email,result.officeNum);
-
-            inquirer
-                .prompt(menuChoices)
-                .then((result) => {
-
-                    if (result.choices === "Add an engineer") {
-                        inquirer
-                            .prompt(quesConcat(engineerQuestions))
-                            .then((result) => {
-                                const engObj = new makeUser.Engineer(result.name,result.ID,result.email,result.github);
-
-                            });
-
-                    } else if (result.choices === "Add an intern") {
-                        inquirer
-                            .prompt(quesConcat(internQuestions))
-                            .then((result) => {
-                                const intObj = new makeUser.Intern(result.name,result.ID,result.email,result.school)
-                            });
-
-                    } else {
-                        console.log("Thanks You");
-                    }
-                });
-
+            htmlCard_lists.push(manObj);
+            menu() 
+           
         }).catch((err) => {
             console.log("error");
         });
 }
+
 
 init();
