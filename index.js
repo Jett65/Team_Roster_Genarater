@@ -1,7 +1,12 @@
 // takes the users input to generate a team roster.
 const inquirer = require("inquirer");
 const makeUser = require("./makeUser");
+const htmlGen = require("./htmlGenarater")
+const fs = require("fs")
 // inquire questions
+
+const fileName = "index.html"
+const htmlCard_lists = []
 
 const employeeQuestions = [
     {
@@ -63,6 +68,12 @@ function quesConcat(secArray) {
     return questions;
 }
 
+function writeToFile(filename, data) {
+    // writs the content to a file
+    fs.writeFile(filename, data)
+    return "File Generated"
+}
+
 function init() {
     // initializes the app 
     inquirer
@@ -79,6 +90,7 @@ function init() {
                             .prompt(quesConcat(engineerQuestions))
                             .then((result) => {
                                 const engObj = new makeUser.Engineer(result.name,result.ID,result.email,result.github);
+
                             });
 
                     } else if (result.choices === "Add an intern") {
