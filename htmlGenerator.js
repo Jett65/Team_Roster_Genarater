@@ -52,7 +52,7 @@ function engineer(obj) {
 <section>
     <div class="cardHead">
         <h2 id="name">${obj.name}</h2>
-        <h2>Engineer/h2>
+        <h2>Engineer</h2>
     </div>
     <div class="cardFoot">
         <div>ID: ${obj.ID}</div>
