@@ -35,7 +35,7 @@ test\makeUser.test.js
 For any questions contact me at: jettc505@gmail.com:
 
 [Vireo link](https://github.com/Jett65/Team_Roster_Genarater/blob/main/test/Team_Roster.mkv)
-[Test passing link]([Vireo link](https://github.com/Jett65/Team_Roster_Genarater/blob/main/test/Team_Roster.mkv))
+[Test passing link](https://github.com/Jett65/Team_Roster_Genarater/blob/main/test/passTest.mkv)
 
 [My GitHub: Jett65](https://github.com/Jett65)
 
