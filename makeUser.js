@@ -10,7 +10,7 @@ class Employee {
 }
 
 class Manager extends Employee {
-    // Uses the Employee class and addes the managers remaning criterea
+    // Extends The Employee Class to add a Manager
     constructor(name,ID,email,officeNumber) {
         super(name,ID,email);
         this.officeNumber = officeNumber;
@@ -18,17 +18,17 @@ class Manager extends Employee {
 }
 
 class Engineer extends Employee {
-    // Uses the Employee class add addes the engeener criterea
-    constructor(name, ID, email, github) {
+    // Extends The Employee Class to add a Engineer
+    constructor(name,ID,email,github) {
         super(name,ID,email);
         this.github = github;
     }
 }
 
 class Intern extends Employee {
-    // Uses the Employee class and addes the intern criterea
-    constructor(name, ID, email, school) {
-        super(name, ID, email);
+    // Extends The Employee Class to add a Intern
+    constructor(name,ID,email,school) {
+        super(name,ID,email);
         this.school = school;
     }
 }
