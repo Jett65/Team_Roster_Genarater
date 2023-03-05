@@ -1,4 +1,4 @@
-const { Intern } = require("../makeUser");
+const { Intern } = require("../lib/makeUser");
 
 test("Creates an intern object",() => {
     const intern = new Intern("Jett",1,"email@email.com","U of U");

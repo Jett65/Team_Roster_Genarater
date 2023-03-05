@@ -4,13 +4,18 @@ const {
     Manager,
     Engineer,
     Intern
-} = require("./makeUser");
-const htmlGen = require("./htmlGenerator");
+} = require("./lib/makeUser");
+const {
+    addManager,
+    addEngineer,
+    addIntern,
+    generateHtml
+} = require("./src/htmlGenerator");
 const fs = require("fs");
 
 
 
-const fileName = "./index.html";
+const fileName = "./dist/index.html";
 const employees = [];
 
 async function createManager() {
@@ -37,7 +42,7 @@ async function createManager() {
         }
     ]);
     const manager = new Manager(results.name,results.id,results.email,results.officeNumber);
-    employees.push(manager);
+    employees.push(addManager(manager));
 }
 
 async function createEngineer(l) {
@@ -64,7 +69,7 @@ async function createEngineer(l) {
         }
     ]);
     const engineer = new Engineer(results.name,results.id,results.email,results.github);
-    employees.push(engineer);
+    employees.push(addEngineer(engineer));
     await menu();
 }
 
@@ -92,7 +97,7 @@ async function createIntern() {
         }
     ]);
     const intern = new Intern(results.name,results.id,results.email,results.school);
-    employees.push(intern);
+    employees.push(addIntern(intern));
     await menu();
 }
 
@@ -102,7 +107,7 @@ async function menu() {
             type: "list",
             name: "role",
             message: "Choose the next action",
-            choices: ["Add Engineer","Add Intern","Complete team"]
+            choices: ["Add Engineer","Add Intern","Finish building Team"]
         }
     );
     if (results.role === "Add Engineer") {
@@ -110,8 +115,7 @@ async function menu() {
     } else if (results.role === "Add Intern") {
         await createIntern();
     } else (
-        console.log("Thanks You"),
-        console.log(employees)
+        console.log("Thanks You")
     );
 }
 
@@ -124,13 +128,8 @@ function writeToFile(data) {
 async function init() {
     await createManager();
     await menu();
-    writeToFile(employees);
+    const data = generateHtml(employees);
+    writeToFile(data);
 }
 
 init();
-
-module.exports = {
-    createManager,
-    createEngineer,
-    createIntern
-};

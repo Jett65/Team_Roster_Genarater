@@ -1,6 +1,6 @@
 // Uses objects to creat html
 
-function manager(obj) {
+function addManager(obj) {
     // Uses the obj to creat a manager card in html
     const managerCard = `
 <section>
@@ -46,8 +46,9 @@ function manager(obj) {
     return managerCard;
 }
 
-function engineer(obj) {
+function addEngineer(obj) {
     // Uses the obj to creat an engineer card in html
+
     const engineerCard = `
 <section>
     <div class="cardHead">
@@ -60,7 +61,7 @@ function engineer(obj) {
             <a href="mailto: ${obj.email}">Email: ${obj.email}</a>
         </div>
         <div>
-            <a href="https://github.com/${obj.github}">GitHub Username: ${obj.github}</a>
+            <a href="https://github.com/${obj.github}" target="_blank">GitHub Username: ${obj.github}</a>
         </div>
     </div>
     <style>
@@ -94,7 +95,7 @@ function engineer(obj) {
     return engineerCard;
 }
 
-function intern(obj) {
+function addIntern(obj) {
     // Uses the obj to creat an intern card in html
     const internCard = `
 <section>
@@ -212,8 +213,8 @@ function generateHtml(genHtmlList) {
 }
 
 module.exports = {
-    manager,
-    engineer,
-    intern,
+    addManager,
+    addEngineer,
+    addIntern,
     generateHtml
 };
