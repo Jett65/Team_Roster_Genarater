@@ -2,38 +2,37 @@
 
 class Employee {
     // Makes a basek employee
-    constructor(name,ID,email) {
+    constructor(name,id,email) {
         this.name = name;
-        this.ID = ID;
+        this.id = id;
         this.email = email;
     }
 }
 
 class Manager extends Employee {
     // Extends The Employee Class to add a Manager
-    constructor(name,ID,email,officeNumber) {
-        super(name,ID,email);
+    constructor(name,id,email,officeNumber) {
+        super(name,id,email);
         this.officeNumber = officeNumber;
     }
 }
 
 class Engineer extends Employee {
     // Extends The Employee Class to add a Engineer
-    constructor(name,ID,email,github) {
-        super(name,ID,email);
+    constructor(name,id,email,github) {
+        super(name,id,email);
         this.github = github;
     }
 }
 
 class Intern extends Employee {
     // Extends The Employee Class to add a Intern
-    constructor(name,ID,email,school) {
-        super(name,ID,email);
+    constructor(name,id,email,school) {
+        super(name,id,email);
         this.school = school;
     }
 }
 
-const name = new Manager("name");
 
 module.exports = {
     Employee,

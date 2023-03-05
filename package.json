@@ -2,11 +2,12 @@
   "name": "team_roster_genarater",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.js", 
   
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "start": "node index.js"
   },
   "repository": {
     "type": "module",

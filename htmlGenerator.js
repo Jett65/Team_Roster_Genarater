@@ -9,7 +9,7 @@ function manager(obj) {
         <h2>Manager</h2>
     </div>
     <div class="cardFoot">
-        <div>ID: ${obj.ID}</div>
+        <div>id: ${obj.id}</div>
         <div>
             <a href="mailto: ${obj.email}">Email: ${obj.email}</a>
         </div>
@@ -55,7 +55,7 @@ function engineer(obj) {
         <h2>Engineer</h2>
     </div>
     <div class="cardFoot">
-        <div>ID: ${obj.ID}</div>
+        <div>id: ${obj.id}</div>
         <div>
             <a href="mailto: ${obj.email}">Email: ${obj.email}</a>
         </div>
@@ -103,7 +103,7 @@ function intern(obj) {
         <h2>Intern</h2>
     </div>
     <div class="cardFoot">
-        <div>ID: ${obj.ID}</div>
+        <div>id: ${obj.id}</div>
         <div>
             <a href="mailto: ${obj.email}">Email: ${obj.email}</a>
         </div>
